@@ -1,0 +1,10 @@
+Manager :
+	username : "Bienvenu"
+	password : "password"
+	
+Users : 
+	username : "Sneeks"
+	password : "password"
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	username : "JeanDup"
+	password : "password"

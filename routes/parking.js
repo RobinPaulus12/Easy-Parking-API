@@ -113,7 +113,7 @@ router.patch('/', checkJWT, manager, PVM.parkingToUpdate, updateParking);
  *          500:
  *              description: Server error
  */
-router.get('/all', checkJWT, manager, getAllParkings);
+router.get('/all', checkJWT, getAllParkings);
 
 /**
  * @swagger

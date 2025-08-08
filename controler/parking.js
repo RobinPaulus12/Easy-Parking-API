@@ -66,7 +66,12 @@ export const getParking = async (req, res)=> {
  */
 export const getAllParkings = async (req, res) => {
     try {
-        const parkings = await parkingModel.getAllParkings(pool);
+        const search = req.query.search || '';
+        const parkings = await pool.query(
+        `SELECT * FROM "parking"
+        WHERE name ILIKE $1`,
+        [`%${search}%`]
+);
         res.send(parkings.rows); 
     } catch (err) {
         console.error(err);

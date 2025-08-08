@@ -13,7 +13,8 @@ export const deleteParking = async (SQLClient, {parking_id}) => {
 };
 
 export const getAllParkings = async (SQLClient) => {
-    return (await SQLClient.query('SELECT * from parking'));
+    const query = `SELECT * FROM parking WHERE name ILIKE $1`;
+    return (await SQLClient.query(query,[`%${search}%`]));
 };
 
 export const getAllParkingsPagination = async (SQLClient, limit, offset,search) => {

@@ -18,7 +18,6 @@ const router = Router();
 router.post('/registration', UVM.user, registration);
 router.post('/login', UVM.login, login);
 router.get('/me', checkJWT, getUserInfo);
-//router.get('/all', checkJWT, manager, getAllUsers);
 router.get("/all/:pagenb", checkJWT, manager, getAllUsers);
 router.patch('/me', checkJWT, UVM.update, updateUser);
 router.delete('/user/:user_id', checkJWT, manager, UVM.deleteUser, deleteUser);

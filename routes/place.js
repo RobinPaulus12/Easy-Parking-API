@@ -14,14 +14,6 @@ import {checkJWT} from '../middleware/identification/jwt.js';
 import {manager} from '../middleware/authorization/mustBe.js';
 import {placeValidatorMiddlewares as PVM} from '../middleware/validation.js';
 
-/*
-import {
-    addProduct,
-    updateProduct,
-    getProduct, deleteProduct
-} from "../controler/productORM.js";
-*/
-
 const router = Router();
 
 router.get("/all/:pagenb",checkJWT,manager,getAllPlacesPagination);

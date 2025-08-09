@@ -1,0 +1,10 @@
+administrateur : 
+
+username : dupont, password : password
+
+
+utilisateur : 
+
+username : Sneeks, password : password
+
+username;JeanDup, password: password

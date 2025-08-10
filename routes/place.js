@@ -11,12 +11,12 @@ import {
 } from '../controler/place.js';
 //import {authBasic} from '../middleware/identification/basic.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
-import {manager} from '../middleware/authorization/mustBe.js';
+import {admin} from '../middleware/authorization/mustBe.js';
 import {placeValidatorMiddlewares as PVM} from '../middleware/validation.js';
 
 const router = Router();
 
-router.get("/all/:pagenb",checkJWT,manager,getAllPlacesPagination);
+router.get("/all/:pagenb",checkJWT,admin,getAllPlacesPagination);
 
 /**
  * @swagger
@@ -43,11 +43,11 @@ router.get("/all/:pagenb",checkJWT,manager,getAllPlacesPagination);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Error server
  */
-router.post('/', checkJWT, manager, PVM.placeToAdd, addPlace);
+router.post('/', checkJWT, admin, PVM.placeToAdd, addPlace);
 /**
  * @swagger
  * /place:
@@ -67,7 +67,7 @@ router.post('/', checkJWT, manager, PVM.placeToAdd, addPlace);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          400:
  *              description: the error(s) described
  *              content:
@@ -77,7 +77,7 @@ router.post('/', checkJWT, manager, PVM.placeToAdd, addPlace);
  *          500:
  *              description: Error server
  */
-router.patch('/', checkJWT, manager, PVM.placeToUpdate, updatePlace);
+router.patch('/', checkJWT, admin, PVM.placeToUpdate, updatePlace);
 
 /**
  * @swagger
@@ -100,7 +100,7 @@ router.patch('/', checkJWT, manager, PVM.placeToUpdate, updatePlace);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Server error
  */
@@ -164,13 +164,13 @@ router.get('/:parking_id', getPlacesForParking);
  *                      schema:
  *                          type: string
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          500:
  *              description: Error server
  */
-router.delete('/:place_id', checkJWT, manager, PVM.placeToDelete, deletePlace);
+router.delete('/:place_id', checkJWT, admin, PVM.placeToDelete, deletePlace);
 
 /**
  * @swagger
@@ -198,5 +198,5 @@ router.delete('/:place_id', checkJWT, manager, PVM.placeToDelete, deletePlace);
  *              description: Server error
  *
  */
-router.post('/withParking', checkJWT, manager, PVM.placeWithParking, placeWithParking);
+router.post('/withParking', checkJWT, admin, PVM.placeWithParking, placeWithParking);
 export default router;

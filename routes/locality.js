@@ -9,13 +9,13 @@ import {
     getAllLocalitiesPagination
 } from '../controler/locality.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
-import {manager} from '../middleware/authorization/mustBe.js';
+import {admin} from '../middleware/authorization/mustBe.js';
 import {localityValidatorMiddlewares as LVM} from '../middleware/validation.js';
 
 
 const router = Router();
 
-router.get("/all/:pagenb", checkJWT, manager, getAllLocalitiesPagination);
+router.get("/all/:pagenb", checkJWT, admin, getAllLocalitiesPagination);
 
 /**
  * @swagger
@@ -42,11 +42,11 @@ router.get("/all/:pagenb", checkJWT, manager, getAllLocalitiesPagination);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Error server
  */
-router.post('/', checkJWT, manager, LVM.localityToAdd, addLocality);
+router.post('/', checkJWT, admin, LVM.localityToAdd, addLocality);
 /**
  * @swagger
  * /locality:
@@ -66,7 +66,7 @@ router.post('/', checkJWT, manager, LVM.localityToAdd, addLocality);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          400:
  *              description: the error(s) described
  *              content:
@@ -76,7 +76,7 @@ router.post('/', checkJWT, manager, LVM.localityToAdd, addLocality);
  *          500:
  *              description: Error server
  */
-router.patch('/', checkJWT, manager, LVM.localityToUpdate, updateLocality);
+router.patch('/', checkJWT, admin, LVM.localityToUpdate, updateLocality);
 
 /**
  * @swagger
@@ -87,7 +87,7 @@ router.patch('/', checkJWT, manager, LVM.localityToUpdate, updateLocality);
  *      tags:
  *          - Locality
  *      summary: Get all localities
- *      description: Retrieve a list of all the localities in the system. Requires the user to be authenticated and have manager access.
+ *      description: Retrieve a list of all the localities in the system. Requires the user to be authenticated and have admin access.
  *      responses:
  *          200:
  *              description: A list of localities
@@ -100,11 +100,11 @@ router.patch('/', checkJWT, manager, LVM.localityToUpdate, updateLocality);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              description: Only managers are allowed to access this endpoint
+ *              description: Only admins are allowed to access this endpoint
  *          500:
  *              description: Error server
  */
-router.get('/all', checkJWT, manager, getAllLocalities);
+router.get('/all', checkJWT, admin, getAllLocalities);
 
 /**
  * @swagger
@@ -165,12 +165,12 @@ router.get('/:locality_id', LVM.searchedLocality, getLocality);
  *                      schema:
  *                          type: string
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          500:
  *              description: Error server
  */
-router.delete('/:locality_id', checkJWT, manager, LVM.localityToDelete, deleteLocality);
+router.delete('/:locality_id', checkJWT, admin, LVM.localityToDelete, deleteLocality);
 
 export default router;

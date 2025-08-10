@@ -10,12 +10,12 @@
     } from '../controler/car.js';
     //import {authBasic} from '../middleware/identification/basic.js';
     import {checkJWT} from '../middleware/identification/jwt.js';
-    import {manager} from '../middleware/authorization/mustBe.js';
+    import {admin} from '../middleware/authorization/mustBe.js';
     import {carValidatorMiddlewares as CVM} from '../middleware/validation.js';
 
     const router = Router();
 
-    router.get('/all/:pagenb', checkJWT, manager, getAllCars);
+    router.get('/all/:pagenb', checkJWT, admin, getAllCars);
 
     /**
      * @swagger
@@ -42,7 +42,7 @@
      *          401:
      *              $ref: '#/components/responses/UnauthorizedError'
      *          403:
-     *              $ref: '#/components/responses/mustBeManager'
+     *              $ref: '#/components/responses/mustBeAdmin'
      *          500:
      *              description: Error server
      */
@@ -67,7 +67,7 @@
      *          401:
      *              $ref: '#/components/responses/UnauthorizedError'
      *          403:
-     *              $ref: '#/components/responses/mustBeManager'
+     *              $ref: '#/components/responses/mustBeAdmin'
      *          400:
      *              description: the error(s) described
      *              content:
@@ -99,11 +99,11 @@
      *          401:
      *              $ref: '#/components/responses/UnauthorizedError'
      *          403:
-     *              description: Only managers are allowed to access this endpoint
+     *              description: Only admins are allowed to access this endpoint
      *          500:
      *              description: Server error
      */
-    router.get('/all', checkJWT, manager, getAllCars);
+    router.get('/all', checkJWT, admin, getAllCars);
 
     /**
      * @swagger
@@ -154,7 +154,7 @@
      *                      schema:
      *                          type: string
      *          403:
-     *              $ref: '#/components/responses/mustBeManager'
+     *              $ref: '#/components/responses/mustBeAdmin'
      *          401:
      *              $ref: '#/components/responses/UnauthorizedError'
      *          500:

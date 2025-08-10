@@ -2,11 +2,11 @@
  * @swagger
  * components:
  *  responses:
- *      mustBeManager:
- *          description: the action must be realized by a manager
+ *      mustBeAdmin:
+ *          description: the action must be realized by an admin
  */
 
-export const manager = (req, res, next) => {
+export const admin = (req, res, next) => {
     if(req.session.status === 'admin'){
         next();
     } else {

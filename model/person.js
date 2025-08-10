@@ -6,7 +6,7 @@ export const readPerson = async (clientSQL, {username, password}) => {
 const responses = await readUserByUsername(clientSQL, {username});
 
     if (responses) {
-        const statutUser = (responses.isadmin ? "admin" : "nonadmin")
+        const statutUser = (responses.isadmin ? "admin" : "user")
         return await compare(password, responses.password) ?
             {id: responses.user_id, status: statutUser} :
             {id: null, status: null};

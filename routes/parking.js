@@ -11,7 +11,7 @@ import {
 } from '../controler/parking.js';
 //import {authBasic} from '../middleware/identification/basic.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
-import {manager} from '../middleware/authorization/mustBe.js';
+import {admin} from '../middleware/authorization/mustBe.js';
 import {parkingValidatorMiddlewares as PVM} from '../middleware/validation.js';
 ;
 
@@ -25,7 +25,7 @@ import {
 
 const router = Router();
 
-router.get("/all/:pagenb", checkJWT, manager, getAllParkingsPagination);
+router.get("/all/:pagenb", checkJWT, admin, getAllParkingsPagination);
 
 /**
  * @swagger
@@ -52,11 +52,11 @@ router.get("/all/:pagenb", checkJWT, manager, getAllParkingsPagination);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Error server
  */
-router.post('/', checkJWT, manager, PVM.parkingToAdd, addParking);
+router.post('/', checkJWT, admin, PVM.parkingToAdd, addParking);
 /**
  * @swagger
  * /parking:
@@ -76,7 +76,7 @@ router.post('/', checkJWT, manager, PVM.parkingToAdd, addParking);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          400:
  *              description: the error(s) described
  *              content:
@@ -86,7 +86,7 @@ router.post('/', checkJWT, manager, PVM.parkingToAdd, addParking);
  *          500:
  *              description: Error server
  */
-router.patch('/', checkJWT, manager, PVM.parkingToUpdate, updateParking);
+router.patch('/', checkJWT, admin, PVM.parkingToUpdate, updateParking);
 
 /**
  * @swagger
@@ -109,7 +109,7 @@ router.patch('/', checkJWT, manager, PVM.parkingToUpdate, updateParking);
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Server error
  */
@@ -175,13 +175,13 @@ router.get('/:parking_id', PVM.searchedParking, getParking);
  *                      schema:
  *                          type: string
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          500:
  *              description: Error server
  */
-router.delete('/:parking_id', checkJWT, manager, PVM.parkingToDelete, deleteParking);
+router.delete('/:parking_id', checkJWT, admin, PVM.parkingToDelete, deleteParking);
 
 /**
  * @swagger
@@ -218,11 +218,11 @@ router.delete('/:parking_id', checkJWT, manager, PVM.parkingToDelete, deletePark
  *          401:
  *              $ref: '#/components/responses/UnauthorizedError'
  *          403:
- *              $ref: '#/components/responses/mustBeManager'
+ *              $ref: '#/components/responses/mustBeAdmin'
  *          500:
  *              description: Server error
  */
-router.post('/withLocality', checkJWT, manager, PVM.parkingWithLocality, parkingWithLocality);
+router.post('/withLocality', checkJWT, admin, PVM.parkingWithLocality, parkingWithLocality);
 
 
 export default router;

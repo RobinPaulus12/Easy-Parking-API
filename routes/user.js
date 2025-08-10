@@ -8,7 +8,6 @@ import {
     deleteUser,
     updateUserByAdmin
 } from '../controler/user.js';
-//import {authBasic} from '../middleware/identification/basic.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
 import {admin} from '../middleware/authorization/mustBe.js';
 import {userValidatorMiddleware as UVM} from '../middleware/validation.js';

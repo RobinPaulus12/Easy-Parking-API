@@ -9,7 +9,6 @@ import {
     getPlacesForParking,
     getAllPlacesPagination
 } from '../controler/place.js';
-//import {authBasic} from '../middleware/identification/basic.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
 import {admin} from '../middleware/authorization/mustBe.js';
 import {placeValidatorMiddlewares as PVM} from '../middleware/validation.js';

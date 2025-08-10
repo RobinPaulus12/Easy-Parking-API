@@ -9,7 +9,6 @@ import {
     getAllParkings,
     getAllParkingsPagination
 } from '../controler/parking.js';
-//import {authBasic} from '../middleware/identification/basic.js';
 import {checkJWT} from '../middleware/identification/jwt.js';
 import {admin} from '../middleware/authorization/mustBe.js';
 import {parkingValidatorMiddlewares as PVM} from '../middleware/validation.js';

@@ -8,7 +8,6 @@
         getAllCarsByUser,
         getAllCars,
     } from '../controler/car.js';
-    //import {authBasic} from '../middleware/identification/basic.js';
     import {checkJWT} from '../middleware/identification/jwt.js';
     import {admin} from '../middleware/authorization/mustBe.js';
     import {carValidatorMiddlewares as CVM} from '../middleware/validation.js';

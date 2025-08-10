@@ -102,18 +102,17 @@ export const addCar = async (req, res) => {
  *          description: Error occurred while updating car details
  */
 export const updateCar = async (req, res) => {
-    const { id: user_id } = req.session; // Supposons que l'ID de l'utilisateur connecté est dans req.session.id
+    const { id: user_id } = req.session;
     try {
         const { license_plate, model, fk_user, car_id } = req.body;
         
-        // Vérifiez d'abord si la voiture appartient à l'utilisateur connecté
         const car = await carModel.getCarByID(pool, car_id);
         if (!car) {
             return res.status(404).send('Car not found');
         }
         
         if (car.fk_user !== user_id && req.session.status !== 'admin') {
-            // Si l'utilisateur n'est pas le propriétaire et n'a pas d'autres permissions (comme être administrateur)
+            
             return res.status(403).send('Forbidden: You are not allowed to update this car');
         }
 
@@ -135,18 +134,16 @@ export const updateCar = async (req, res) => {
  *          description: Error occurred while deleting car
  */
 export const deleteCar = async (req, res) => {
-    const { id: user_id } = req.session; // Supposons que l'ID de l'utilisateur connecté est dans req.session.id
+    const { id: user_id } = req.session;
     try {
         const { car_id } = req.val;
-        
-        // Vérifiez si la voiture existe et appartient à l'utilisateur connecté
+
         const car = await carModel.getCarByID(pool, car_id);
         if (!car) {
             return res.status(404).send('Car not found');
         }
         
         if (car.fk_user !== user_id && req.session.status !== 'admin') {
-            // Si l'utilisateur n'est pas le propriétaire et n'est pas administrateur
             return res.status(403).send('Forbidden: You are not allowed to delete this car');
         }
 

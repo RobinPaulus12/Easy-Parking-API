@@ -89,8 +89,8 @@ export const updateUserByAdmin = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        const { user_id } = req.params; // Assurez-vous d'utiliser req.params pour user_id
-        await userModel.deleteUser(pool, { user_id }); // Passez l'objet avec user_id
+        const { user_id } = req.params;
+        await userModel.deleteUser(pool, { user_id });
         res.sendStatus(204);
     } catch (err) {
         res.sendStatus(500);

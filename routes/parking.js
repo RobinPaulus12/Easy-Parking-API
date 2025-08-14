@@ -82,7 +82,7 @@ router.post('/', checkJWT, manager, PVM.parkingToAdd, addParking);
  *          500:
  *              description: Error server
  */
-router.patch('/', checkJWT, manager, PVM.parkingToUpdate, updateParking);
+router.patch('/', checkJWT, PVM.parkingToUpdate, updateParking);
 
 /**
  * @swagger

@@ -16,6 +16,7 @@ Pour que l'API fonctionne, voici ce qu'il faut installer :
 	npm pkg set scripts.genDoc="node ./swagger/swagger_jsdoc.js"
 	npm run genDoc
 
+    ou tout simplement npm install
 
 Sur Docker :
 	docker run --name postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB=backendproject -p 5432:5432 --rm -d postgres
